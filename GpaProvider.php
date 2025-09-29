@@ -1,24 +1,48 @@
 <?php
+
 namespace GPA;
+
 use GuzzleHttp\RequestOptions;
 use SocialiteProviders\Manager\OAuth2\AbstractProvider;
 use SocialiteProviders\Manager\OAuth2\User;
-class GpaProvider extends AbstractProvider {
+
+class GpaProvider extends AbstractProvider
+{
     public const IDENTIFIER = 'GPA';
-    protected $scopes = ['users'];
+
+    protected $scopes = [
+        'users',
+    ];
+    protected $consent = false;
+
     protected $scopeSeparator = ' ';
-    protected function getAuthUrl($state) {
-        return $this->buildAuthUrlFromBase(
-            'https://accounts.gridplay.ca/oauth/authorize',
-            $state
-        );
+
+    protected function getAuthUrl($state): string
+    {
+        return $this->buildAuthUrlFromBase('https://accounts.gridplay.ca/oauth/authorize', $state);
     }
-    protected function getTokenUrl() {
-        return 'https://accounts.gridplay.ca/oauth/token';
+
+    protected function getCodeFields($state = null)
+    {
+        $fields = parent::getCodeFields($state);
+
+        $fields['prompt'] = 'none';
+
+        return $fields;
     }
-    protected function getUserByToken($token) {
+
+    protected function getTokenUrl(): string
+    {
+        return "https://accounts.gridplay.ca/oauth/token";
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getUserByToken($token)
+    {
         $response = $this->getHttpClient()->get(
-            'https://accounts.gridplay.ca/api/user',
+            'https://accounts.gridplay.ca/api/users',
             [
                 RequestOptions::HEADERS => [
                     'Authorization' => 'Bearer '.$token,
@@ -28,11 +52,13 @@ class GpaProvider extends AbstractProvider {
 
         return json_decode((string) $response->getBody(), true);
     }
-    protected function mapUserToObject(array $user) {
-        return (new User())->setRaw($user)->map([
-            'id'   => $user['id'],
-            'name' => $user['name'],
-            'email' => $user['email']
+
+    protected function mapUserToObject(array $user)
+    {
+        return (new User)->setRaw($user)->map([
+            'id'       => $user['id'],
+            'name'     => $user['name'],
+            'email'    => $user['email'] ?? null,
         ]);
     }
 }
