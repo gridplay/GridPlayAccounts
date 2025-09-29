@@ -14,7 +14,7 @@ class GpaProvider extends AbstractProvider {
         );
     }
     protected function getTokenUrl() {
-        return 'https://accounts.gridplay.ca/oauth/token';
+        return "https://accounts.gridplay.ca/oauth/token";
     }
     protected function getUserByToken($token) {
         $response = $this->getHttpClient()->get(
