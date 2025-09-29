@@ -13,22 +13,15 @@ class GpaProvider extends AbstractProvider
     protected $scopes = [
         'users',
     ];
-    protected $consent = false;
+    protected $consent = true;
+
+    protected $stateless = true;
 
     protected $scopeSeparator = ' ';
 
     protected function getAuthUrl($state): string
     {
         return $this->buildAuthUrlFromBase('https://accounts.gridplay.ca/oauth/authorize', $state);
-    }
-
-    protected function getCodeFields($state = null)
-    {
-        $fields = parent::getCodeFields($state);
-
-        $fields['prompt'] = 'none';
-
-        return $fields;
     }
 
     protected function getTokenUrl(): string
