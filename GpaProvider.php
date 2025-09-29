@@ -13,9 +13,9 @@ class GpaProvider extends AbstractProvider
     protected $scopes = [
         'users',
     ];
-    protected $consent = true;
+    protected $consent = false;
 
-    protected $stateless = true;
+    protected $stateless = false;
 
     protected $scopeSeparator = ' ';
 
