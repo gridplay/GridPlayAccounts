@@ -50,7 +50,7 @@ class GpaProvider extends AbstractProvider
 
     protected function getTokenUrl(): string
     {
-        return 'https://accounts.gridplay.ca/oauth/token';
+        return "https://accounts.gridplay.ca/oauth/token";
     }
 
     /**
