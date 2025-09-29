@@ -1,0 +1,35 @@
+{
+    "name": "gridplay/gridplayaccounts",
+    "description": "GridPlay OAuth2 Provider for Laravel Socialite",
+    "license": "MIT",
+    "keywords": [
+        "gridplay",
+        "laravel",
+        "oauth",
+        "provider",
+        "socialite",
+        "gpa"
+    ],
+    "authors": [
+        {
+            "name": "Christopher Strachan",
+            "email": "chrisx84@live.ca"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "ext-json": "*",
+        "socialiteproviders/manager": "^4.5",
+        "guzzlehttp/guzzle": "7.*",
+        "illuminate/support": "^11.0 | ^12.0"
+    },
+    "extra": {
+        "laravel": {
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "GPA\\": ""
+        }
+    }
+}
