@@ -27,20 +27,6 @@ composer require gridplay/gridplayaccounts
 
 ### Add provider event listener
 
-#### Laravel 10 and below
-Configure the package's listener to listen for `SocialiteWasCalled` events.
-
-Add the event to your `listen[]` array in `app/Providers/EventServiceProvider`. See the [Base Installation Guide](https://socialiteproviders.com/usage/) for detailed instructions.
-
-```php
-protected $listen = [
-    \SocialiteProviders\Manager\SocialiteWasCalled::class => [
-        // ... other providers
-        \GPA\GPAExtendSocialite::class.'@handle',
-    ],
-];
-```
-
 #### Laravel 11+
 In your Providers/AppServiceProvider.php put the following in the boot function
 ```php
