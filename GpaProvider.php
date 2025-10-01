@@ -8,7 +8,7 @@ use SocialiteProviders\Manager\OAuth2\User;
 
 class GpaProvider extends AbstractProvider
 {
-    public const IDENTIFIER = 'GPA';
+    public const IDENTIFIER = 'GRIDPLAYACCOUNTS';
 
     protected $scopes = [
         'users',

@@ -5,7 +5,7 @@
 To use first install with composer
 ```json
     "require": {
-        "gridplay/gpa": "^1.0",
+        "gridplay/gridplayaccounts": "^1.0",
     }
 ```
 ```sh
@@ -13,12 +13,12 @@ composer update
 ```
 or do...
 ```sh
-composer require gridplay/gpa
+composer require gridplay/gridplayaccounts
 ```
 ### Add configuration to `config/services.php`
 
 ```php
-'gpa' => [    
+'gridplayaccounts' => [    
   'client_id' => env('GPA_CLIENT_ID'),  
   'client_secret' => env('GPA_CLIENT_SECRET'),  
   'redirect' => env('GPA_REDIRECT_URI') 
@@ -49,7 +49,7 @@ use \GPA\GpaProvider;
     public function boot(): void
     {
         Event::listen(function (\SocialiteProviders\Manager\SocialiteWasCalled $event) {
-            $event->extendSocialite('gpa', GpaProvider::class);
+            $event->extendSocialite('gridplayaccounts', GpaProvider::class);
         });
     }
 ```
@@ -59,10 +59,10 @@ use \GPA\GpaProvider;
 You should now be able to use the provider like you would regularly use Socialite (assuming you have the facade installed):
 
 ```php
-return Socialite::driver('gpa')->redirect();
+return Socialite::driver('gridplayaccounts')->redirect();
 ```
 ```php
-$user = Socialite::driver('gpa')->user();
+$user = Socialite::driver('gridplayaccounts')->user();
 $gpid = $user->id;
 $name = $user->name;
 // etc.
@@ -70,7 +70,5 @@ $name = $user->name;
 ### Returned User fields
 
 - ``id``
-- ``grid``
 - ``name``
 - ``email``
-- ``points``
