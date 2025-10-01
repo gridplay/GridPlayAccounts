@@ -15,7 +15,7 @@ class GpaProvider extends AbstractProvider
     ];
     protected $consent = false;
 
-    protected $stateless = false;
+    protected $stateless = true;
 
     protected $scopeSeparator = ' ';
 
@@ -29,21 +29,23 @@ class GpaProvider extends AbstractProvider
         return "https://accounts.gridplay.ca/oauth/token";
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getUserByToken($token)
     {
-        $response = $this->getHttpClient()->get(
-            'https://accounts.gridplay.ca/api/users',
-            [
-                RequestOptions::HEADERS => [
-                    'Authorization' => 'Bearer '.$token,
-                ],
-            ]
-        );
+        try {
+            $response = $this->getHttpClient()->get(
+                'https://accounts.gridplay.ca/api/users',
+                [
+                    RequestOptions::HEADERS => [
+                        'Authorization' => 'Bearer '.$token,
+                        'Accept' => 'application/json',
+                    ],
+                ]
+            );
 
-        return json_decode((string) $response->getBody(), true);
+            return json_decode((string) $response->getBody(), true);
+        } catch (\Exception $e) {
+            throw new \RuntimeException('Failed to fetch user from GridPlay Accounts: '.$e->getMessage());
+        }
     }
 
     protected function mapUserToObject(array $user)
