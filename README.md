@@ -57,6 +57,5 @@ $name = $user->name;
 
 - ``id``
 - ``name``
-- ``email``
 - ``slid``
 - ``prem``

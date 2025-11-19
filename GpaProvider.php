@@ -53,7 +53,6 @@ class GpaProvider extends AbstractProvider
         return (new User)->setRaw($user)->map([
             'id'       => $user['id'],
             'name'     => $user['name'],
-            'email'    => $user['email'] ?? null,
             'slid'     => $user['slid'] ?? null,
             'prem'     => $user['prem'] ?? 0,
         ]);
