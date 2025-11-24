@@ -21,19 +21,19 @@ class GpaProvider extends AbstractProvider
 
     protected function getAuthUrl($state): string
     {
-        return $this->buildAuthUrlFromBase('https://accounts.gridplay.ca/oauth/authorize', $state);
+        return $this->buildAuthUrlFromBase('https://accounts.gridplay.net/oauth/authorize', $state);
     }
 
     protected function getTokenUrl(): string
     {
-        return "https://accounts.gridplay.ca/oauth/token";
+        return "https://accounts.gridplay.net/oauth/token";
     }
 
     protected function getUserByToken($token)
     {
         try {
             $response = $this->getHttpClient()->get(
-                'https://accounts.gridplay.ca/api/users',
+                'https://accounts.gridplay.net/api/users',
                 [
                     RequestOptions::HEADERS => [
                         'Authorization' => 'Bearer '.$token,
