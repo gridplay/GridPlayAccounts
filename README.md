@@ -19,9 +19,9 @@ composer require gridplay/gridplayaccounts
 
 ```php
 'gridplayaccounts' => [    
-  'client_id' => env('GPA_CLIENT_ID'),  
-  'client_secret' => env('GPA_CLIENT_SECRET'),  
-  'redirect' => env('GPA_REDIRECT_URI') 
+    'client_id' => env('GPA_CLIENT_ID'),  
+    'client_secret' => env('GPA_CLIENT_SECRET'),  
+    'redirect' => env('GPA_REDIRECT_URI') 
 ],
 ```
 
